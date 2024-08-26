@@ -1,0 +1,5 @@
+--------------copy everything except---------------
+env.local sanity specific data
+
+
+

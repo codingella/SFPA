@@ -1,0 +1,391 @@
+
+.page {
+    --padding-h: 30px;
+    --padding-v: 15px;
+    padding: var(--padding-v) var(--padding-h);
+    --width: 50vw;
+    --height: calc(var(--width) * 0.13);
+    min-height: 100vh;
+    min-height: 100svh;
+    max-height: 100vh;
+    max-height: 100svh;
+    overflow:hidden;
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 1; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.intro .item1.luka {
+    animation: fadeIn 1s ease both 0.5s;
+}
+
+.intro .item1.markic {
+    overflow: hidden; /* Ensure the container hides overflowing content */
+    
+}
+
+.intro .item1.markic img{
+    animation: slideIn 0.7s ease both 1.5s; /* Start after the first animation ends */
+}
+
+.intro .content.item1,.intro .topMenu,.intro .bottomMenu {
+    animation: fadeIn 1s ease both 2.4s; /* Start after the second animation ends */
+}
+
+
+
+.page.flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mode1 {
+    color: black;
+}
+
+.mode2 {
+    color: white;
+}
+
+.container {
+    position: fixed;
+    top: calc(50vh - var(--height));
+}
+
+.container.flex {
+    position: relative;
+    top: 0;
+}
+
+.logo {
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    width: calc(100vw - var(--padding-v));
+}
+
+.logo div {
+    position: absolute;
+}
+
+.luka {
+    width: calc(var(--width) * 0.35);
+    position: absolute;
+}
+
+.markic {
+    position: absolute;
+    top: 1px;
+    width: calc(var(--width) * 0.62);
+    left: calc(var(--width) * 0.37);
+}
+
+.item1, .item2 {
+    transition: opacity 0.2s ease;
+}
+
+.mode1 .item2, .mode2 .item1 {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.mode1 .item1, .mode2 .item2 {
+    opacity: 1;
+}
+
+.content {
+    margin-top: 1em;
+    position: absolute;
+    left: calc(var(--width) * 0.37);
+    width: calc(100% - (var(--width) * 0.37) - var(--padding-h) * 2);
+}
+
+.content.legal {
+    top: 0;
+    margin-top: 0;
+    position: relative;
+}
+
+.page a.back {
+    position:fixed;
+    top: var(--padding-v);
+    left: calc(var(--padding-h) - 0.9em);
+    cursor: pointer;
+    transition: left 0.3s ease;
+}
+
+.page a.back:hover {
+    padding-left: 0;
+    left: calc(var(--padding-h) - 1.2em);
+    transition: left 0.3s ease;
+}
+
+.back span {
+    margin-left: 0.3em;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.page a.back:before{
+    display:none;
+}
+
+.back img {
+    width: 0.6em;
+    transform: scale(-1);
+    height: 0.6em;
+}
+
+.topMenu, .bottomMenu {
+    position: fixed;
+    left: 0;
+    padding: var(--padding-v) var(--padding-h);
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.mode1 .bottomMenu {
+    cursor: pointer;
+}
+
+.mode2 .topMenu {
+    cursor: pointer;
+}
+
+.topMenu p, .bottomMenu p {
+    position: relative;
+    left: calc(var(--width) * 0.37);
+    transition: color 0.2s ease;
+}
+
+.bottomMenu:hover p {
+    color: white;   
+}
+
+.topMenu:hover p {
+    color: black;
+}
+
+.topMenu {
+    top: 0;
+}
+
+.bottomMenu {
+    bottom: 0;
+}
+ 
+.indicator img {
+    width: 0.6em;
+    height: 0.6em;   
+}
+
+.indicator {
+    right: calc(var(--padding-h) - 0.3em);
+    position: absolute;
+    top:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.6em;
+    height: 100%;  
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.topMenu .indicator {
+    transform: rotate(-90deg);
+}
+
+.bottomMenu .indicator {
+    transform: rotate(90deg);
+}
+
+.hover {
+    height: 0;
+    width: 100%;
+    position: absolute;
+    left:0;
+    transition: height 0.2s ease;
+}
+
+.topMenu .hover {
+    top:0;
+    background-color: white;
+}
+
+.bottomMenu .hover {
+    bottom: 0;
+    background-color: #BF1622;
+}
+
+.bottomMenu:hover .hover, .topMenu:hover .hover {
+    height: 100%;
+}
+
+.background {
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    background-color: #BF1622;
+    transition: height 0.4s ease;
+}
+
+.mode1 .background {
+    height:0;
+}
+
+.mode2 .background {
+    height: 100%;
+}
+
+.page a {
+    position: relative;
+    display: inline-block;
+    color: inherit; /* Ensures the link color inherits from the parent */
+    text-decoration: none; /* Removes the underline */
+    transition: padding-left 0.3s ease, left 0.3s ease; /* Smooth transition for the margin */
+}
+
+.page a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 100%;
+    
+    background-size: contain;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.page.mode1 a:before {
+    background: url('/arrow.svg') no-repeat center;
+}
+
+.page.mode2 a:before {
+    background: url('/arrow-white.svg') no-repeat center;
+}
+
+.page a:hover {
+    padding-left: 15px; /* Adjust the margin to move the text to the right */
+}
+
+.page a:hover::before {
+    width: 0.7em; /* Width of the arrow */
+    opacity: 1;
+}
+
+
+.mode1 *::selection, .legal *::selection {
+    background: #BF1622;
+    color: white;
+}
+
+.mode1 *::-moz-selection, .legal *::-moz-selection {
+    background: #BF1622;
+    color: white;
+}
+
+/* Specific styles for mode2 */
+.mode2 *::selection {
+    background: white;
+    color: #BF1622;
+}
+
+.mode2 *::-moz-selection {
+    background: white;
+    color: #BF1622;
+}
+
+
+
+@media (hover: none) {
+
+    .mode2 .topMenu .indicator {
+        opacity: 1;
+        transition: opacity 0.3s ease 0.2s;
+    }
+
+    .mode1 .bottomMenu .indicator {
+        opacity: 1;
+        transition: opacity 0.3s ease 0.2s;
+    }
+
+    .hover{
+        display: none;
+    }
+
+
+}
+
+
+@media (max-width: 1100px), (orientation: portrait) {
+
+    .page {
+        --width: 75vw;
+    }
+
+   
+}
+
+@media (max-width: 650px){
+
+    .page {
+        --width: 85vw;
+        --padding-h: 10px;
+        --padding-v: 10px;
+    }
+
+    .logo {
+        width: calc(100vw - var(--padding-v));
+    }
+
+    .content {
+        left: 0;
+        width: calc(100% - var(--padding-h) * 2);
+    }
+
+    .topMenu p, .bottomMenu p {
+        left: 0;
+    }
+
+    .indicator {
+        right: var(--padding-h);
+    }
+
+    .page a.back {
+        left: var(--padding-h);
+    }
+
+    .content.legal {
+        top: 3em;
+        position: relative;
+    }
+}
+
+@media (max-width: 500px){
+
+    .page {
+        --width: 90vw;
+    }
+
+    .container {
+        top: calc(45vh - var(--height));
+    }
+
+}
+
+
