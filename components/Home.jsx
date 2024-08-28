@@ -6,9 +6,16 @@ import Content from './elements/Content';
 const Home = ({content}) => {
 
   return (
-    <div>
+    <>
+      <div>
+Home
 
-    </div>
+      </div>
+      <style jsx global>{`
+       
+        
+      `}</style>
+    </>
   );
 };
 

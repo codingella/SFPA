@@ -14,6 +14,23 @@
   font-style: italic;
 }
 
+:root {
+  --padding: 20px;
+
+  --columns: 9;
+  --grid-gap: 10px;
+
+  --double-padding: calc(var(--padding) * 2);
+  --gap-space: calc((var(--columns) - 1) * var(--grid-gap));
+
+  --grid-template-columns: repeat(var(--columns), 1fr);
+  --column-width: calc(
+    (100vw - var(--double-padding) - var(--gap-space)) / var(--columns)
+  );
+
+  position: relative;
+}
+
 html, body {
   padding: 0;
   margin: 0;
@@ -31,6 +48,7 @@ html, body {
   font-size: var(--fs);
   overflow-x: hidden;
   scroll-behavior: smooth;
+  --grid
 
  /* scroll-snap-type: y proximity;
   scroll-behavior: smooth;*/
@@ -43,6 +61,8 @@ html, body {
 .Content p:first-child {
   margin-top: 0;
 }
+
+
 
 /*
 @media (max-width: 1024px) and (hover: none) {
