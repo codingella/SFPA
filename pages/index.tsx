@@ -3,25 +3,25 @@ import { GetStaticProps } from 'next';
 import HeadSection from '../components/elements/HeadSection';
 import Home from '../components/Home';
 
-export default function Page({settings, showIntro}) {
+export default function Page({data}) {
+  const { settings } = data;
   const { defaultseo } = settings || {}
 
   return (
     <div>
       <HeadSection seo={null} defaultSeo={defaultseo} />
-     SFPZ Home
+      <Home content={data}/>
     </div>
   )
 }
 
 export const getStaticProps = async (ctx) => {
   // Fetch all data using the combined query
-  const { settings, legal } = await getAllData();
+  const data = await getAllData();
 
   return {
     props: {
-      settings,
-      legal,
+      data
     },
     // Triggering ISR every 60 seconds
     revalidate: 60,

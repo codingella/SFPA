@@ -1,6 +1,8 @@
 import { BookIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 import { blockContent } from './objects/blockContent'
+import { seo } from './objects/seo'
+
 /**
  * This file is the schema definition for a post.
  *
@@ -14,15 +16,21 @@ import { blockContent } from './objects/blockContent'
  */
 
 export default defineType({
-  name: 'legal',
-  title: 'Imprint',
+  name: 'abschnitte',
+  title: 'Abschnitte',
   type: 'document',
 
   fields: [
     defineField({
-      name: 'imprint',
-      title: 'Edit your Imprint Text here.',
-      type: 'array',
+      name: 'title',
+      title: 'Titel',
+      type: 'string',
+    }),
+
+    defineField({
+      name: 'text',
+      title: 'Inhalt',
+      type: 'array',      
       of: [blockContent],
     }),
   ],

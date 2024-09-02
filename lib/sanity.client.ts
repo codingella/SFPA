@@ -10,8 +10,8 @@ export const client = projectId
   : null
 
 // Combined GROQ query to fetch all required data
-const combinedQuery = groq`{ 'settings': *[_type == "settings"][0]{..., positions[]-> },
-    'legal': *[_type == "legal"][0]
+const combinedQuery = groq`{ 'settings': *[_type == "settings"][0]{..., desktopNav[]{..., internalRef->}, mobileNav[]{..., internalRef->} },
+    'podcasts': *[_type == "podcasts"], 'podcastIntro': *[_type == "podcastIntro"][0], 'veranstaltungen': *[_type == "veranstaltungen"] | order(date desc, time asc), 'abschnitte': *[_type == "abschnitte"]
   }
 `
 

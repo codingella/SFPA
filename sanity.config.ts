@@ -13,7 +13,6 @@ import {StudioStructure} from './studioStructure'
 import {schemaTypes} from './schemas'
 
 import settingsType from 'schemas/settings'
-import legalType from 'schemas/legal'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Studentisches Forum Psychoanalyse Zürich'
@@ -32,7 +31,6 @@ export default defineConfig({
       structure: StudioStructure,
     }),
     // Configures the global "new document" button, exclude new documents feature for these
-    settingsPlugin({ type: legalType.name}),
     settingsPlugin({ type: settingsType.name}),
 
     // https://www.sanity.io/docs/the-vision-plugin

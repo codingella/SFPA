@@ -1,5 +1,5 @@
 import { StructureBuilder, StructureResolver } from "sanity/structure";
-import { CogIcon, UserIcon, InfoOutlineIcon, OlistIcon, CalendarIcon, CaseIcon } from '@sanity/icons'
+import { CogIcon, UserIcon, InfoOutlineIcon, OlistIcon, CalendarIcon, PlayIcon } from '@sanity/icons'
 
 export const StudioStructure = (S : StructureBuilder) =>
 
@@ -9,7 +9,31 @@ S.list()
 .items([
     
       // Regular document types, allows multiple documents
-    S.documentTypeListItem("inhalte").title("Inhalte").icon(UserIcon),
+    S.documentTypeListItem("veranstaltungen").title("Veranstaltungen").icon(CalendarIcon),
+    // Section for "Podcasts"
+    S.listItem()
+    .title('Podcasts')
+    .icon(PlayIcon)
+    .child(
+      S.list()
+      .title('Podcasts')
+      .items([
+        // Singleton document for Podcasts Introduction
+        S.listItem()
+          .title('Podcasts Introduction')
+          .id('podcastIntro')
+          .child(
+            S.document()
+              .schemaType('podcastIntro')
+              .documentId('podcastIntro')
+              .title('Podcasts Introduction')
+          ),
+        // Correctly list all Podcast documents using documentTypeListItem
+        S.documentTypeListItem('podcasts').title('All Podcasts')
+      ])
+  ),
+
+    S.documentTypeListItem("abschnitte").title("Weitere Abschnitte").icon(InfoOutlineIcon),
 
     //Single Page Document
     S.listItem()
@@ -23,16 +47,6 @@ S.list()
         .title("Einstellungen")
     ),
 //Single Page Document
-    S.listItem()
-    .title("Impressum")
-    .id("legal")
-    .icon(CaseIcon)
-    .child(
-     
-        S.document()
-          .schemaType("legal")
-          .documentId("legal")
-          .title("Imprint")
-  ),
+
 
 ])

@@ -6,21 +6,26 @@ export default defineType({
   title: 'Einstellungen',
   type: 'document',
   fields: [
-    defineField(defaultSeo),
     defineField({
-      title: 'Inhalte auswählen',
-      name: 'positions',
+      title: 'Desktop Navigation',
+      name: 'desktopNav',
       type: 'array',
       of: [
         {
-          type: 'reference',
-          to: [{ type: 'inhalte' }],
-          options: {
-            disableNew: true
-          }
+          type: "link",
+        },
+      ],
+    }),
+    defineField({
+      title: 'Mobile Navigation',
+      name: 'mobileNav',
+      type: 'array',
+      of: [
+        {
+         type: 'link'
         }
       ],
-      description: 'Hier können die Seiten geändert werden, die als erste bzw. zweite Seite auf der Website erscheinen.',
     }),
+    defineField(defaultSeo),
   ]
 })

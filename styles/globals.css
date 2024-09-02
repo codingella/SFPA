@@ -15,10 +15,8 @@
 }
 
 :root {
-  --padding: 20px;
-
-  --columns: 9;
-  --grid-gap: 10px;
+  --columns: 11;
+  --grid-gap: 15px;
 
   --double-padding: calc(var(--padding) * 2);
   --gap-space: calc((var(--columns) - 1) * var(--grid-gap));
@@ -27,6 +25,32 @@
   --column-width: calc(
     (100vw - var(--double-padding) - var(--gap-space)) / var(--columns)
   );
+
+  /* Font Size */
+  --min-fontsize: 12px;
+  --max-fontsize: 16px;
+  --base-fontsize: calc(12px + 4 * ((100vw - 1100px) / 300));
+  --fs: clamp(var(--min-fontsize), var(--base-fontsize), var(--max-fontsize));
+
+  /* Padding */
+  --min-padding: 25px;
+  --max-padding: 40px;
+  --base-padding: calc(25px + 15 * ((100vw - 1100px) / 300));
+  --padding: clamp(var(--min-padding), var(--base-padding), var(--max-padding));
+
+
+  --lh: 1.25;
+
+
+  --yellow: #F3FF47;
+  --lilac: #D7C1FF;
+  --lilac-hover: #C7AAFF;
+
+  --bubble-padding: calc(var(--padding) * 0.875) var(--padding);
+  --bubble-padding-inner: calc(40px + var(--padding));
+  --radius: var(--padding);
+
+  --lh: 1.25;
 
   position: relative;
 }
@@ -37,19 +61,13 @@ html, body {
   font-family: 'ABCArizona', 'Times New Roman', serif;
   font-weight: 500;
 
-  --base-fontsize: calc(18 * calc(100vw / 1920));
-  --min-fontsize: 14px;
-  --max-fontsize: 24px;
-  --fs: clamp(var(--min-fontsize), var(--base-fontsize), var(--max-fontsize));
-  --lh: 1.25;
-
+  
   line-height: var(--lh);
 
   font-size: var(--fs);
+  line-height: calc(1em * var(--lh));
   overflow-x: hidden;
   scroll-behavior: smooth;
-  --grid
-
  /* scroll-snap-type: y proximity;
   scroll-behavior: smooth;*/
 }
@@ -60,6 +78,12 @@ html, body {
 
 .Content p:first-child {
   margin-top: 0;
+}
+
+h2 {
+  font-size: 1em;
+  font-weight: normal;
+  text-transform: uppercase;
 }
 
 
@@ -107,6 +131,11 @@ a {
 * {
   box-sizing: border-box;
   margin: 0;
+}
+
+::selection {
+  background: black;
+  color: white;
 }
 
 @media (prefers-color-scheme: dark) {

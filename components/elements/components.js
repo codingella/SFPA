@@ -16,9 +16,6 @@ const components = {
       <span
         style={{
           textTransform: 'uppercase',
-          fontSize: '0.9em',
-          lineHeight: '1.2',
-          display: 'inline-block',
         }}
       >
         {props?.children}

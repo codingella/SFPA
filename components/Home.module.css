@@ -1,314 +1,244 @@
 
-.page {
-    --padding-h: 30px;
-    --padding-v: 15px;
-    padding: var(--padding-v) var(--padding-h);
-    --width: 50vw;
-    --height: calc(var(--width) * 0.13);
+.Home {
     min-height: 100vh;
-    min-height: 100svh;
-    max-height: 100vh;
-    max-height: 100svh;
-    overflow:hidden;
     width: 100%;
+    display: grid;
+    align-items: start;
+    grid-template-columns: var(--grid-template-columns);
+    grid-gap: var(--grid-gap);
+    padding: 0 var(--padding);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideIn {
-    from { transform: translateX(-100%); opacity: 1; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-.intro .item1.luka {
-    animation: fadeIn 1s ease both 0.5s;
-}
-
-.intro .item1.markic {
-    overflow: hidden; /* Ensure the container hides overflowing content */
-    
-}
-
-.intro .item1.markic img{
-    animation: slideIn 0.7s ease both 1.5s; /* Start after the first animation ends */
-}
-
-.intro .content.item1,.intro .topMenu,.intro .bottomMenu {
-    animation: fadeIn 1s ease both 2.4s; /* Start after the second animation ends */
-}
-
-
-
-.page.flex {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.mode1 {
-    color: black;
-}
-
-.mode2 {
-    color: white;
-}
-
-.container {
+.desktopNav, .logo {
     position: fixed;
-    top: calc(50vh - var(--height));
-}
-
-.container.flex {
-    position: relative;
-    top: 0;
+    left: var(--padding);
 }
 
 .logo {
-    position: relative;
-    width: var(--width);
-    height: var(--height);
-    width: calc(100vw - var(--padding-v));
+    top: var(--padding);
 }
 
-.logo div {
-    position: absolute;
+.desktopNav {
+    bottom: var(--padding);
 }
 
-.luka {
-    width: calc(var(--width) * 0.35);
-    position: absolute;
-}
-
-.markic {
-    position: absolute;
-    top: 1px;
-    width: calc(var(--width) * 0.62);
-    left: calc(var(--width) * 0.37);
-}
-
-.item1, .item2 {
-    transition: opacity 0.2s ease;
-}
-
-.mode1 .item2, .mode2 .item1 {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.mode1 .item1, .mode2 .item2 {
-    opacity: 1;
-}
-
-.content {
-    margin-top: 1em;
-    position: absolute;
-    left: calc(var(--width) * 0.37);
-    width: calc(100% - (var(--width) * 0.37) - var(--padding-h) * 2);
-}
-
-.content.legal {
-    top: 0;
-    margin-top: 0;
-    position: relative;
-}
-
-.page a.back {
-    position:fixed;
-    top: var(--padding-v);
-    left: calc(var(--padding-h) - 0.9em);
+.desktopNav p {
+    color: #8E8E8E;
     cursor: pointer;
-    transition: left 0.3s ease;
 }
 
-.page a.back:hover {
-    padding-left: 0;
-    left: calc(var(--padding-h) - 1.2em);
-    transition: left 0.3s ease;
+.veranstaltungen {
+    grid-column: 3 / 9;
 }
 
-.back span {
-    margin-left: 0.3em;
-    text-transform: uppercase;
-    font-size: 0.9em;
+.leftColumn {
+    grid-column: 9 / 12;
 }
 
-.page a.back:before{
-    display:none;
+.abschnitt {
+    position: relative;
 }
 
-.back img {
-    width: 0.6em;
-    transform: scale(-1);
-    height: 0.6em;
+.leftColumn, .veranstaltungen {
+    padding: 0 0 40vh 0;
+    height: calc(100vh);
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer and Edge */
+    position: relative;
 }
 
-.topMenu, .bottomMenu {
-    position: fixed;
-    left: 0;
-    padding: var(--padding-v) var(--padding-h);
+.veranstaltungen::-webkit-scrollbar, .leftColumn::-webkit-scrollbar, .paginationScroll::-webkit-scrollbar {
+    width: 0px; /* Set scrollbar width to 0 */
+    background: transparent; /* Optional: Make the scrollbar background transparent */
+}
+
+.paginationScroll {
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer and Edge */
+}
+
+.sectionHeader {
+    padding: var(--bubble-padding);
+    padding-top: 0;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+.abschnitt .sectionHeader{
+    padding-bottom: 20px;
+    margin-top: 30px;
+}
+
+.sectionHeader:first-child {margin-top: 0;}
+
+.introText {
+    padding: var(--bubble-padding);
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.leftColumn img {
     width: 100%;
-    text-transform: uppercase;
-    font-size: 0.9em;
 }
 
-.mode1 .bottomMenu {
-    cursor: pointer;
+.bubble p {
+    margin-bottom: calc(1em * var(--lh));
 }
 
-.mode2 .topMenu {
-    cursor: pointer;
-}
-
-.topMenu p, .bottomMenu p {
-    position: relative;
-    left: calc(var(--width) * 0.37);
-    transition: color 0.2s ease;
-}
-
-.bottomMenu:hover p {
-    color: white;   
-}
-
-.topMenu:hover p {
-    color: black;
-}
-
-.topMenu {
-    top: 0;
-}
-
-.bottomMenu {
-    bottom: 0;
-}
- 
-.indicator img {
-    width: 0.6em;
-    height: 0.6em;   
+.bubble p:last-child {
+    margin-bottom: 0;
 }
 
 .indicator {
-    right: calc(var(--padding-h) - 0.3em);
-    position: absolute;
-    top:0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 0.6em;
-    height: 100%;  
-    transition: opacity 0.3s ease;
-    opacity: 0;
-}
-
-.topMenu .indicator {
-    transform: rotate(-90deg);
-}
-
-.bottomMenu .indicator {
-    transform: rotate(90deg);
-}
-
-.hover {
-    height: 0;
-    width: 100%;
-    position: absolute;
-    left:0;
-    transition: height 0.2s ease;
-}
-
-.topMenu .hover {
-    top:0;
-    background-color: white;
-}
-
-.bottomMenu .hover {
-    bottom: 0;
-    background-color: #BF1622;
-}
-
-.bottomMenu:hover .hover, .topMenu:hover .hover {
-    height: 100%;
-}
-
-.background {
-    position: absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    background-color: #BF1622;
-    transition: height 0.4s ease;
-}
-
-.mode1 .background {
-    height:0;
-}
-
-.mode2 .background {
-    height: 100%;
-}
-
-.page a {
+    margin-top: 0;
+    transition: all 0.3s ease;
     position: relative;
-    display: inline-block;
-    color: inherit; /* Ensures the link color inherits from the parent */
-    text-decoration: none; /* Removes the underline */
-    transition: padding-left 0.3s ease, left 0.3s ease; /* Smooth transition for the margin */
+    height: calc(1em * var(--lh));
 }
 
-.page a::before {
-    content: '';
+.visible .indicator {
+    margin-top: calc(1em * var(--lh));
+}
+
+.indicator span {
     position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 100%;
-    
-    background-size: contain;
-    opacity: 0;
-    transition: width 0.3s ease, opacity 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.page.mode1 a:before {
-    background: url('/arrow.svg') no-repeat center;
-}
-
-.page.mode2 a:before {
-    background: url('/arrow-white.svg') no-repeat center;
-}
-
-.page a:hover {
-    padding-left: 15px; /* Adjust the margin to move the text to the right */
-}
-
-.page a:hover::before {
-    width: 0.7em; /* Width of the arrow */
+.mehr {
     opacity: 1;
 }
 
-
-.mode1 *::selection, .legal *::selection {
-    background: #BF1622;
-    color: white;
+.weniger {
+    opacity: 0;
+    cursor: pointer;
 }
 
-.mode1 *::-moz-selection, .legal *::-moz-selection {
-    background: #BF1622;
-    color: white;
+.visible .weniger{
+    opacity: 1;
 }
 
-/* Specific styles for mode2 */
-.mode2 *::selection {
-    background: white;
-    color: #BF1622;
+.visible .mehr {
+    opacity:0;
 }
 
-.mode2 *::-moz-selection {
-    background: white;
-    color: #BF1622;
+.visible .weniger {
+    opacity: 1;
 }
+
+.episodeLinks {
+    margin-bottom: 0 !important;
+    margin-top: calc(1em * var(--lh));
+}
+
+.episodeLinks a {
+    width: 100%;
+    display: block;
+}
+
+
+.bubble {
+    width: 100%;
+    position: relative;
+    padding: var(--bubble-padding);
+    background-color: var(--lilac);
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+.abschnitt .bubble {
+    cursor: auto;
+}
+
+.veranstaltungen .bubble.visible {
+    cursor: auto;
+}
+
+.bubble h2 {
+    margin: var(--bubble-padding-inner) 0;
+    width: 100%;
+    text-align: center;
+}
+
+.time {
+    margin-left: 20px;
+}
+
+.cover {
+    position: absolute;
+    left: var(--bubble-padding);
+    width: var(--bubble-padding-inner);
+}
+
+ .text, .podcast .hidden {
+    width: 100%;
+    padding-left: calc(var(--bubble-padding-inner) + 20px);
+}
+
+.hidden {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s ease-out;
+}
+
+.hiddenWrapper {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.visible .hiddenWrapper {
+    opacity: 1;
+    transition: opacity 0.3s ease 0.25s;
+}
+
+.scrollAnchor {
+    position: absolute;
+    top: calc((1em * var(--lh) + 60px) * (-1));
+    left: 0;
+}
+
+.abschnitt .scrollAnchor  {
+    top: -10px;
+}
+
+.scrollAnchor#Veranstaltungen, .scrollAnchor#Podcasts {
+    top: 0px;
+}
+
+.pagination {
+    padding: var(--bubble-padding);
+    padding-top: 10px;
+    
+}
+
+.paginationScroll {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+
+.pagination span {
+    margin-right: calc(1.2em);
+    white-space: nowrap;
+}
+
+.selected {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+.pagination .item {
+    cursor: pointer;
+}
+
+
 
 
 
