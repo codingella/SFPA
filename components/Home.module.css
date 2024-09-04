@@ -1,7 +1,6 @@
-
 .Home {
-    min-height: 100vh;
     width: 100%;
+    height: 100%;
     display: grid;
     align-items: start;
     grid-template-columns: var(--grid-template-columns);
@@ -14,8 +13,18 @@
     left: var(--padding);
 }
 
+.mobileNav, .forum, .overlayBottom, .overlay {
+    display: none;
+}
+
 .logo {
     top: var(--padding);
+    height: calc(1em * var(--lh) * 4);
+    max-width: 60vw;;
+}
+
+.logo img {
+    height: 100%;
 }
 
 .desktopNav {
@@ -51,21 +60,19 @@
     position: relative;
 }
 
-.veranstaltungen::-webkit-scrollbar, .leftColumn::-webkit-scrollbar, .paginationScroll::-webkit-scrollbar {
+.veranstaltungen::-webkit-scrollbar, .leftColumn::-webkit-scrollbar, .paginationScroll::-webkit-scrollbar, .Home::-webkit-scrollbar {
     width: 0px; /* Set scrollbar width to 0 */
     background: transparent; /* Optional: Make the scrollbar background transparent */
 }
 
-.paginationScroll {
+.paginationScroll, .Home {
     scrollbar-width: none; /* Hides scrollbar for Firefox */
     -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer and Edge */
 }
 
 .sectionHeader {
-    padding: var(--bubble-padding);
-    padding-top: 0;
-    padding-bottom: 10px;
-    margin-top: 40px;
+    padding: 0 0 10px var(--bubble-padding-h);
+    margin-top: var(--padding);
 }
 
 .abschnitt .sectionHeader{
@@ -76,9 +83,7 @@
 .sectionHeader:first-child {margin-top: 0;}
 
 .introText {
-    padding: var(--bubble-padding);
-    padding-top: 10px;
-    padding-bottom: 15px;
+    padding: 10px var(--bubble-padding-h) 15px var(--bubble-padding-h);
 }
 
 .leftColumn img {
@@ -88,6 +93,7 @@
 .bubble p {
     margin-bottom: calc(1em * var(--lh));
 }
+
 
 .bubble p:last-child {
     margin-bottom: 0;
@@ -130,24 +136,28 @@
     opacity: 1;
 }
 
-.episodeLinks {
+.episodeLinks  {
     margin-bottom: 0 !important;
-    margin-top: calc(1em * var(--lh));
+    padding-top: calc(1em * var(--lh));
 }
 
-.episodeLinks a {
-    width: 100%;
-    display: block;
+.episodeLinks p {
+    margin-bottom: 0;
 }
 
 
 .bubble {
     width: 100%;
     position: relative;
-    padding: var(--bubble-padding);
+    padding: var(--bubble-padding-v) var(--bubble-padding-h);
     background-color: var(--lilac);
     border-radius: var(--radius);
     cursor: pointer;
+    transition: background 0.3s ease-out;
+}
+
+.bubble:hover {
+    background-color: var(--lilac-hover);
 }
 
 .abschnitt .bubble {
@@ -170,7 +180,7 @@
 
 .cover {
     position: absolute;
-    left: var(--bubble-padding);
+    left: var(--bubble-padding-h);
     width: var(--bubble-padding-inner);
 }
 
@@ -182,7 +192,7 @@
 .hidden {
     height: 0;
     overflow: hidden;
-    transition: height 0.4s ease-out;
+    transition: height 0.3s ease-out;
 }
 
 .hiddenWrapper {
@@ -192,12 +202,12 @@
 
 .visible .hiddenWrapper {
     opacity: 1;
-    transition: opacity 0.3s ease 0.25s;
+    transition: opacity 0.3s ease 0.15s;
 }
 
 .scrollAnchor {
     position: absolute;
-    top: calc((1em * var(--lh) + 60px) * (-1));
+    top: calc((1em * var(--lh) + var(--padding) + 20px) * (-1));
     left: 0;
 }
 
@@ -210,9 +220,7 @@
 }
 
 .pagination {
-    padding: var(--bubble-padding);
-    padding-top: 10px;
-    
+    padding: 10px var(--bubble-padding-h) var(--bubble-padding-v) var(--bubble-padding-h);
 }
 
 .paginationScroll {
@@ -228,10 +236,14 @@
     white-space: nowrap;
 }
 
-.selected {
+.selected, .bubble a {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
+}
+
+.episodeLinks a {
+    text-decoration: none;
 }
 
 .pagination .item {
@@ -239,83 +251,184 @@
 }
 
 
-
-
-
-@media (hover: none) {
-
-    .mode2 .topMenu .indicator {
-        opacity: 1;
-        transition: opacity 0.3s ease 0.2s;
+@media all and (max-width: 900px){
+    .Home {
+        display: block;
+        padding: 0 10px 50vh 10px;
+        position: absolute;
     }
 
-    .mode1 .bottomMenu .indicator {
-        opacity: 1;
-        transition: opacity 0.3s ease 0.2s;
-    }
-
-    .hover{
+    .desktopNav {
         display: none;
     }
 
+    .forum, .overlayBottom {
+        display: block;
+    }
+
+    .mobileNav, .overlayBottom {
+        display: block;
+    }
+
+    .overlayBottom {
+        position: fixed;
+        width: 100%;
+        background-color: white;
+        bottom: 0;
+        left: 0;
+        height: calc(20px + var(--radius));
+        z-index: 101;
+    }
+
+    .forum {
+        position: fixed;
+        bottom: 20px;
+        left: 10px;
+        width: calc(100% - 20px);
+
+        background-color: var(--grey);
+        padding: 30px 20px;
+        border-radius: var(--radius);
+        z-index: 102;
+        cursor:pointer;
+    }
+
+    .mobileNav {
+        position: fixed;
+        padding: calc(70px + 1em * var(--lh)) 10px calc(59px + 1em * var(--lh)) 10px;
+        bottom: 20px;
+        left: 0;
+        flex-direction: column-reverse;
+        width: 100vw;
+        max-width:100%;
+        z-index: 100;
+        max-height: 100%;
+        overflow:scroll;
+        display: flex;
+        visibility: hidden;
+        transition: visibility 0s linear 0.5s;
+        cursor:pointer;
+        scrollbar-width: none; /* Hides scrollbar for Firefox */
+        -ms-overflow-style: none; 
+    }
+
+    .mobileNav::-webkit-scrollbar {
+        width: 0px; /* Set scrollbar width to 0 */
+        background: transparent; /* Optional: Make the scrollbar background transparent */
+    }
+    
+
+    .mobileNav.active {
+        visibility: visible;
+        transition: visibility 0s linear 0s;
+    }
+
+    .mobileNav .navItem {
+        width: 100%;
+        background-color: var(--grey);
+        padding: 30px 20px;
+        border-radius: var(--radius);
+        z-index: 101;
+        border: 2px solid var(--grey);
+    }
+
+    .mobileNav.active .navItem {
+        transform: translateY(0);
+    }
+
+
+    .mobileNav p, .forum p {
+        text-transform: uppercase;
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo {
+        position: relative;
+        height: calc(1em * var(--lh) * 8);
+        top: 0;
+        left: var(--bubble-padding-h);
+    }
+
+    .logo img {
+        height: calc(1em * var(--lh) * 4);
+        position: sticky;
+        top: var(--padding);
+    }
+
+    .veranstaltungen, .leftColumn {
+        overflow: unset;
+        height: auto;
+        padding-bottom: 0;
+    }
+
+    .pagination {
+        width: 100vw;
+        position: relative;
+        left: -10px;
+        padding: 10px 0 0 0;
+    }
+    
+    .paginationScroll {
+        padding-left: calc(var(--bubble-padding-h) + 10px);
+        padding-right: 50px;
+    }
+    
+    .pagination span {
+        margin-right: calc(1.2em);
+        white-space: nowrap;
+    }
+
+    .sectionHeader, .abschnitt.first{
+        margin-top: 100px;
+    }
+
+    .introText {
+        padding: 0 var(--bubble-padding-h);
+        margin: 30px 0;
+    }
+
+    .cover {
+        width: 100px;
+    }
+
+    .podcast {
+        min-height: calc(100px + var(--bubble-padding-v) * 2);
+    }
+
+    .text, .podcast .hidden {
+        padding-left: calc(100px + 20px);
+    }
+
+    .scrollAnchor {
+        width: 10px;
+        height: 10px;
+    }
+
+    .scrollAnchor {
+        top: -10px; 
+    }
+    
+    .abschnitt .scrollAnchor  {
+        top: -10px;
+    }
+    
+    .veranstaltungen .scrollAnchor, .podcasts.scrollAnchor {
+        top: 70px !important;
+    }
+
+}
+
+
+@media (hover: none) {
 
 }
 
 
 @media (max-width: 1100px), (orientation: portrait) {
-
-    .page {
-        --width: 75vw;
-    }
-
    
 }
 
-@media (max-width: 650px){
 
-    .page {
-        --width: 85vw;
-        --padding-h: 10px;
-        --padding-v: 10px;
-    }
-
-    .logo {
-        width: calc(100vw - var(--padding-v));
-    }
-
-    .content {
-        left: 0;
-        width: calc(100% - var(--padding-h) * 2);
-    }
-
-    .topMenu p, .bottomMenu p {
-        left: 0;
-    }
-
-    .indicator {
-        right: var(--padding-h);
-    }
-
-    .page a.back {
-        left: var(--padding-h);
-    }
-
-    .content.legal {
-        top: 3em;
-        position: relative;
-    }
-}
-
-@media (max-width: 500px){
-
-    .page {
-        --width: 90vw;
-    }
-
-    .container {
-        top: calc(45vh - var(--height));
-    }
-
-}
 
 

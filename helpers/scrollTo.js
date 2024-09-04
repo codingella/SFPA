@@ -1,6 +1,5 @@
 export const scrollTo = (elementId) => {
   const element = document.getElementById(elementId)
-  console.log(element)
   if (!element) {
     console.warn(`Element with ID ${elementId} not found.`)
     return

@@ -38,6 +38,7 @@ const Veranstaltungen = ({ data }) => {
 
   const handleYearClick = (year) => {
     setSelectedYear(year);
+    setBubbleIndex(null);
     scrollTo('Veranstaltungen');
   };
 
@@ -52,7 +53,7 @@ const Veranstaltungen = ({ data }) => {
 
   return (
     <div className={style.veranstaltungen}>
-      <div className={style.scrollAnchor} id={'Veranstaltungen'} />
+      <div className={`${style.scrollAnchor}`} id={'Veranstaltungen'} />
       <h2 className={style.sectionHeader}>Veranstaltungen</h2>
       {filteredData.map((item, i) => (
         <ToggleableBubble
@@ -79,7 +80,7 @@ const Veranstaltungen = ({ data }) => {
     years.length > 1 &&
         <div className={style.pagination}>
             <div className={style.paginationScroll}>
-            <span>Archiv</span>
+            <span>Archiv</span>  
             {
             years.map(year => (
             <span

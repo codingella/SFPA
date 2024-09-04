@@ -6,18 +6,30 @@ const ToggleableBubble = ({ type, children, hiddenContent, isOpen, onToggle, id 
     const [hiddenHeight, setHeight] = useState(0);
     const hiddenRef = useRef(null);
   
-    // Function to update the hidden content's height
-    const updateHeight = () => {
-      if (hiddenRef.current) {
-        setHeight(hiddenRef.current.clientHeight);
-      }
-    };
-  
-    // Update height only when the bubble is about to open
     useEffect(() => {
+      const updateHeight = () => {
+        if (hiddenRef.current) {
+          setHeight(hiddenRef.current.clientHeight);
+        }
+      };
+    
+      const handleResize = () => {
+        updateHeight(); // Trigger height update on screen resize
+      };
+    
+      // Update height and add the resize event listener only when the bubble is open
       if (isOpen) {
-        updateHeight();
+        updateHeight(); // Initial height update when the bubble opens
+    
+        window.addEventListener('resize', handleResize); // Add resize listener
       }
+    
+      // Clean up: Remove the event listener when the bubble is closed
+      return () => {
+        if (isOpen) {
+          window.removeEventListener('resize', handleResize);
+        }
+      };
     }, [isOpen]);
   
     const outerDivOnClick = type !== 'veranstaltung' || !isOpen ? onToggle : undefined;

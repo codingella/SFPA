@@ -21,39 +21,59 @@
   --double-padding: calc(var(--padding) * 2);
   --gap-space: calc((var(--columns) - 1) * var(--grid-gap));
 
-  --grid-template-columns: repeat(var(--columns), 1fr);
+ /* --grid-template-columns: repeat(var(--columns), 1fr);*/
+  --fixed-column-width: 100px; /* Adjust this to your fixed column size */
+  --grid-template-columns: var(--fixed-column-width) repeat(calc(var(--columns) - 4), 1fr) repeat(3, var(--fixed-column-width));
+
   --column-width: calc(
     (100vw - var(--double-padding) - var(--gap-space)) / var(--columns)
   );
 
   /* Font Size */
-  --min-fontsize: 12px;
+  --min-fontsize: 14px;
   --max-fontsize: 16px;
-  --base-fontsize: calc(12px + 4 * ((100vw - 1100px) / 300));
+  --base-fontsize: calc(14px + 2 * ((100vw - 1100px) / 300));
   --fs: clamp(var(--min-fontsize), var(--base-fontsize), var(--max-fontsize));
 
   /* Padding */
-  --min-padding: 25px;
+  --min-padding: 30px;
   --max-padding: 40px;
-  --base-padding: calc(25px + 15 * ((100vw - 1100px) / 300));
+  --base-padding: calc(30px + 10 * ((100vw - 1100px) / 300));
   --padding: clamp(var(--min-padding), var(--base-padding), var(--max-padding));
 
-
-  --lh: 1.25;
-
+  --lh: 1.31;
 
   --yellow: #F3FF47;
   --lilac: #D7C1FF;
   --lilac-hover: #C7AAFF;
+  --grey: #E8E7E7;
 
-  --bubble-padding: calc(var(--padding) * 0.875) var(--padding);
-  --bubble-padding-inner: calc(40px + var(--padding));
+  --bubble-padding-h: calc(var(--padding) * 0.875);
+  --bubble-padding-v: var(--padding);
+  --bubble-padding-inner: 80px;
   --radius: var(--padding);
-
-  --lh: 1.25;
-
-  position: relative;
 }
+
+
+
+@media (max-width: 900px){
+  :root {
+    --fs: 16px;
+    --lh: 1.31;
+  }
+}
+
+@media (max-width: 600px){
+  :root {
+    --bubble-padding-h: 20px;
+    --bubble-padding-v: 35px;
+    --bubble-padding-inner: 40px;
+    --radius: 35px;
+  }
+}
+
+
+
 
 html, body {
   padding: 0;
@@ -95,13 +115,6 @@ h2 {
    font-size: 18px;
   }
 }*/
-
-@media (max-width: 650px){
-  html, body {
-    font-size: 14px;
-   }
-}
-
 
 /* width */
 html::-webkit-scrollbar-button {

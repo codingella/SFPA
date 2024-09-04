@@ -6,10 +6,7 @@ import { scrollTo } from '../helpers/scrollTo';
 
 const DesktopNav = ({nav}) => {
 
-  
-
   const handleNavClick = (item) => {
-    
     if (item.linkType === 'internal') {
       scrollTo(item.internalReference._ref);
     } else if (item.linkType === 'custom') {

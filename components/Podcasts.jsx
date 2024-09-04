@@ -54,12 +54,14 @@ const Podcasts = ({ data }) => {
           onToggle={() => handleToggleBubble(i)}
           hiddenContent={
             item.links && (
-              <div>
-                <p className={style.episodeLinks}>Zur Podcast-Folge</p>
+              <div className={style.episodeLinks}>
+                <p>Zur Podcast-Folge</p>
                 {item.links.map((link, j) => (
+                <p key={j}>
                   <a key={j} href={link.link}>
                     {link.title}
                   </a>
+                </p>
                 ))}
               </div>
             )
@@ -88,7 +90,7 @@ const Podcasts = ({ data }) => {
         <div className={style.pagination}>
         <div className={style.paginationScroll}>
         <span>Weitere Folgen</span>
-        {Array.from({ length: totalPages*10 }, (_, index) => (
+        {Array.from({ length: totalPages}, (_, index) => (
           <span
             key={index}
             className={`${style.item} ${
