@@ -4,7 +4,7 @@ import style from './Home.module.css';
 import { scrollTo } from '../helpers/scrollTo';
 
 
-const DesktopNav = ({nav}) => {
+const DesktopNav = ({nav, intro}) => {
 
   const handleNavClick = (item) => {
     if (item.linkType === 'internal') {
@@ -17,7 +17,7 @@ const DesktopNav = ({nav}) => {
   };
 
   return (
-    <div className={style.desktopNav}>
+    <div className={style.desktopNav} style={{opacity: intro ? 1 : 0, transition: 'opacity 0.5s ease'}}>
     {nav.map((item, index) => (
       <p
         key={index}

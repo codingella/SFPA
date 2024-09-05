@@ -4,7 +4,7 @@ import style from './Home.module.css';
 import { scrollTo } from '../helpers/scrollTo';
 
 
-const MobileNav = ({nav, open, setOpen}) => {
+const MobileNav = ({nav, open, setOpen, intro}) => {
 
   const handleNavClick = (item) => {
     setOpen(false);
@@ -20,7 +20,7 @@ const MobileNav = ({nav, open, setOpen}) => {
 
   return (
     <>
-      <div className={`${style.mobileNav} ${open ? style.active : ''}`}>
+      <div className={`${style.mobileNav} ${open ? style.active : ''}`} style={{opacity: intro ? 1 : 0, transition: 'opacity 0.5s ease'}}>
       
           {nav.slice().reverse().map((item, i) => (
             <div
