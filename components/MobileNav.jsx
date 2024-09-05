@@ -43,6 +43,11 @@ const MobileNav = ({nav, open, setOpen}) => {
         <div onClick={() => setOpen(!open)} className={style.forum}>
           <p>Forum</p>
       </div>
+
+      <div className={style.overlayTop}/>
+        <div onClick={() => setOpen(false)} className={style.forum}>
+          <p>Forum</p>
+      </div>
   </>
   );
 };

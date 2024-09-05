@@ -53,7 +53,7 @@ const Veranstaltungen = ({ data }) => {
 
   return (
     <div className={style.veranstaltungen}>
-      <div className={`${style.scrollAnchor}`} id={'Veranstaltungen'} />
+      <div className={`${style.scrollAnchor} ${style.event}`} id={'Veranstaltungen'} />
       <h2 className={style.sectionHeader}>Veranstaltungen</h2>
       {filteredData.map((item, i) => (
         <ToggleableBubble

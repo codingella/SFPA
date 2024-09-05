@@ -18,7 +18,7 @@ const Home = ({ content }) => {
 
   return (
     <>
-    <div className={style.Home}>
+    <div className={style.Home} style={{overflow: mobileNavOpen ? 'hidden' : 'auto'}}>
       <div className={style.logo}>
        
         <img src={'/logo.svg'} alt={'Logo'}/>
@@ -60,7 +60,7 @@ const Home = ({ content }) => {
           <Podcasts data={podcasts}/>
         }
 
-        {abschnitte.map((abschnitt, i) => (
+        {abschnitte?.map((abschnitt, i) => (
           <div className={`${style.abschnitt} ${i == 0 ? style.first : ''}`} key={i}>
             <div className={style.scrollAnchor} id={abschnitt._id}/>
             {abschnitt.title &&
