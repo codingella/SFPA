@@ -344,6 +344,14 @@
         text-align: center;
     }
 
+    .overlayTop {
+        position: absolute;
+        top:-20px;
+        left:0;
+        height:calc(70px + 1em * var(--lh) *2);
+        width: 100%;
+    }
+
     .logo {
         position: relative;
         margin-bottom: 100px;

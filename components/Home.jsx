@@ -13,12 +13,19 @@ import { urlFor } from '../helpers/sanity-img-url';
 const Home = ({ content }) => {
 
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [intro, setIntro] = useState(false);
 
   const { settings, veranstaltungen, podcasts, podcastIntro, abschnitte } = content;
 
+  useEffect(() => {
+    setTimeout(()=> {
+      setIntro(true);
+    }, 200)
+  }, []);
+
   return (
     <>
-    <div className={style.Home} style={{overflow: mobileNavOpen ? 'hidden' : 'auto'}}>
+    <div className={style.Home} style={{overflow: mobileNavOpen ? 'hidden' : 'auto', opacity: intro ? 1 : 0, transition: 'opacity 0.5s ease'}}>
       <div className={style.logo}>
        
         <img src={'/logo.svg'} alt={'Logo'}/>
@@ -74,12 +81,12 @@ const Home = ({ content }) => {
       </div>
 
       {settings?.desktopNav && (
-        <DesktopNav nav={settings.desktopNav}/>
+        <DesktopNav nav={settings.desktopNav} intro={intro}/>
       )}
     </div>
 
      {settings?.mobileNav && (
-      <MobileNav open={mobileNavOpen} setOpen={setMobileNavOpen} nav={settings.mobileNav}/>
+      <MobileNav open={mobileNavOpen} intro={intro} setOpen={setMobileNavOpen} nav={settings.mobileNav}/>
     )}
 
     </>
