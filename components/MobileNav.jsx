@@ -20,7 +20,7 @@ const MobileNav = ({nav, open, setOpen, intro}) => {
 
   return (
     <>
-      <div className={`${style.mobileNav} ${open ? style.active : ''}`} style={{opacity: intro ? 1 : 0, transition: 'opacity 0.5s ease'}}>
+      <div className={`${style.mobileNav} ${open ? style.active : ''}`} style={{opacity: intro ? 1 : 0}}>
       
           {nav.slice().reverse().map((item, i) => (
             <div
