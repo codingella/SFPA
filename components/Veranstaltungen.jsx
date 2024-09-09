@@ -62,7 +62,27 @@ const Veranstaltungen = ({ data }) => {
           type={'veranstaltung'}
           isOpen={bubbleIndex === i}
           onToggle={() => handleToggleBubble(i, item._id)}
-          hiddenContent={item.description && <Content blocks={item.description} />}
+          hiddenContent={
+            <>
+            {/* Teaser Section */}
+            {item.teaser && (
+                <Content blocks={item.teaser} />
+            )}
+      
+            {/* Description Content Section */}
+            {item.description && (
+                <Content blocks={item.description} />
+            )}
+      
+            {/* Registration Section */}
+            {item.registration && (
+              <Content blocks={item.registration} />
+            )}
+            {item.address && (
+              <Content blocks={item.address} />
+            )}
+          </>
+          }
         >
           <p>
             {item.date && (

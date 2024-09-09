@@ -7,6 +7,8 @@ export default function Page({data}) {
   const { settings } = data;
   const { defaultseo } = settings || {}
 
+
+
   return (
     <div>
       <HeadSection seo={null} defaultSeo={defaultseo} />

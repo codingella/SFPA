@@ -250,6 +250,14 @@
     cursor: pointer;
 }
 
+.Content {
+    padding-top: calc(1em * var(--lh));   
+}
+
+.Content:first-child {
+    padding-top: 0;
+}
+
 
 @media all and (max-width: 900px){
     .Home {
