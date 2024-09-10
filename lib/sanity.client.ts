@@ -11,7 +11,7 @@ export const client = projectId
 
 // Combined GROQ query to fetch all required data
 const combinedQuery = groq`{ 'settings': *[_type == "settings"][0]{..., desktopNav[]{..., internalRef->}, mobileNav[]{..., internalRef->} },
-    'podcasts': *[_type == "podcasts"], 'podcastIntro': *[_type == "podcastIntro"][0], 'veranstaltungen': *[_type == "veranstaltungen"] | order(date desc, time asc), 'abschnitte': *[_type == "abschnitte"]
+    'podcasts': *[_type == "podcasts"], 'podcastIntro': *[_type == "podcastIntro"][0], 'veranstaltungen': *[_type == "veranstaltungen"] | order(date desc, time asc), 'abschnitte': *[_type == "abschnitte"] | order(order asc)
   }
 `
 

@@ -26,6 +26,12 @@ export default defineType({
       title: 'Titel',
       type: 'string',
     }),
+    {
+      name: 'order',
+      title: 'Position / Reihenfolge',
+      type: 'number',
+      description: 'bestimmt die Reihenfolge der Abschnitte. Je kleiner, desto weiter oben wird der Abschnitt gezeigt.'
+    },
 
     defineField({
       name: 'text',

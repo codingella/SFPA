@@ -18,6 +18,8 @@ const Home = ({ content }) => {
 
   const { settings, veranstaltungen, podcasts, podcastIntro, abschnitte } = content;
 
+  console.log(abschnitte);
+
   useEffect(() => {
     setTimeout(()=> {
       setIntro(true);
