@@ -22,8 +22,9 @@
   --gap-space: calc((var(--columns) - 1) * var(--grid-gap));
 
  /* --grid-template-columns: repeat(var(--columns), 1fr);*/
-  --fixed-column-width: 100px; /* Adjust this to your fixed column size */
-  --grid-template-columns: var(--fixed-column-width) repeat(calc(var(--columns) - 4), 1fr) repeat(3, var(--fixed-column-width));
+ --fixed-column-width: 100px; /* Minimum fixed column size */
+ --grid-template-columns: repeat(3, minmax(var(--fixed-column-width), 1fr)) repeat(calc(var(--columns) - 6), 1fr) repeat(3, minmax(var(--fixed-column-width), 1fr));
+ 
 
   --column-width: calc(
     (100vw - var(--double-padding) - var(--gap-space)) / var(--columns)
@@ -79,13 +80,18 @@ html, body {
   padding: 0;
   margin: 0;
   font-family: 'ABCArizona', 'Times New Roman', serif;
-  font-weight: 500;
+  font-weight: normal;
 
   
   line-height: var(--lh);
 
   font-size: var(--fs);
   line-height: calc(1em * var(--lh));
+
+  -moz-osx-font-smoothing: grayscale;
+-webkit-font-smoothing: antialiased;
+-webkit-font-smoothing: antialiased;
+
   overflow-x: hidden;
   scroll-behavior: smooth;
  /* scroll-snap-type: y proximity;

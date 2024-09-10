@@ -1,4 +1,4 @@
-import { blockContent, blockContentSimple } from './objects/blockContent'
+import { blockContent} from './objects/blockContent'
 
 // schemas/sectionIntroduction.js
 export default {

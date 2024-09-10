@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import React from 'react';
 import style from './Home.module.css';
 import { scrollTo } from '../helpers/scrollTo';
+import Veranstaltungen from "./Veranstaltungen";
 
 
 const DesktopNav = ({nav, intro}) => {

@@ -6,6 +6,7 @@ import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
 import Veranstaltungen from './Veranstaltungen';
 import Podcasts from './Podcasts';
+import { scrollTo} from '../helpers/scrollTo'; 
 
 import { urlFor } from '../helpers/sanity-img-url';
 
@@ -23,10 +24,19 @@ const Home = ({ content }) => {
     }, 200)
   }, []);
 
+  const resetPage = () => {
+    scrollTo('Veranstaltungen');
+    setTimeout(() => {
+      scrollTo('Podcasts');
+    }, 800)
+  }
+
+  console.log(podcastIntro.description)
+
   return (
     <>
-    <div className={style.Home} style={{overflow: mobileNavOpen ? 'hidden' : 'auto', opacity: intro ? 1 : 0, transition: 'opacity 0.5s ease'}}>
-      <div className={style.logo}>
+    <div className={style.Home} style={{opacity: intro ? 1 : 0, transition: 'opacity 0.5s ease'}}>
+      <div className={style.logo} onClick={resetPage}>
        
         <img src={'/logo.svg'} alt={'Logo'}/>
        
@@ -55,16 +65,20 @@ const Home = ({ content }) => {
                 alt={'podcast Intro Image'}
               />
             )}
-            {podcastIntro.introText && (
-              <p className={style.introText}>
-                {podcastIntro.introText}
-              </p>
+            {podcastIntro.description && (
+              <div className={style.introText}>
+              <Content blocks={podcastIntro.description}></Content>
+              </div>
             )}
           </div>
+          
         )}
 
         {podcasts && 
+        <>
+          <div className={`${style.scrollAnchor}`} style={{position: 'relative'}} id={'firstEpisode'}/>
           <Podcasts data={podcasts}/>
+          </>
         }
 
         {abschnitte?.map((abschnitt, i) => (

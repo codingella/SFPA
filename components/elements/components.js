@@ -25,18 +25,47 @@ const components = {
     link: ({ value, children }) => {
       const { linkType, href, internalReference, customPath } = value
 
+      const handleLinkClick = (e) => {
+        e.stopPropagation() // Prevent the parent onClick from being triggered
+      }
+
       if (linkType === 'external') {
         return (
-          <a href={href} target="_blank" rel="noopener noreferrer">
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleLinkClick}
+          >
             {children}
           </a>
         )
       } else if (linkType === 'internal' && internalReference?.slug?.current) {
         return (
-          <Link href={`/${internalReference.slug.current}`}>{children}</Link>
+          <Link
+            href={`/${internalReference.slug.current}`}
+            onClick={handleLinkClick}
+          >
+            {children}
+          </Link>
         )
       } else if (linkType === 'custom' && customPath) {
-        return <Link href={customPath}>{children}</Link>
+        return (
+          <Link href={customPath} onClick={handleLinkClick}>
+            {children}
+          </Link>
+        )
+      } else if (linkType == null) {
+        return (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleLinkClick}
+          >
+            {children}
+          </a>
+        )
       }
 
       return null

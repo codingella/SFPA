@@ -1,6 +1,6 @@
 import { BookIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
-import { blockContent, blockContentSimple } from './objects/blockContent'
+import { blockContent} from './objects/blockContent'
 import { seo } from './objects/seo'
 
 /**
@@ -56,14 +56,14 @@ export default defineType({
       title: 'Teaser',
       type: 'array',
       description: 'Kurzer Event-Teaser',
-       of: [blockContentSimple],
+       of: [blockContent],
     }),
     defineField({
       name: 'registration',
       title: 'Registration',
       type: 'array',
       description: 'Hinweise zur Anmeldung',
-       of: [blockContentSimple],
+       of: [blockContent],
     }),
     defineField({
       name: 'description',
@@ -76,7 +76,7 @@ export default defineType({
       name: 'address',
       title: 'Adresse',
       type: 'array',
-       of: [blockContentSimple],
+       of: [blockContent],
     }),
   ],
 })

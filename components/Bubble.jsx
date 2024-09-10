@@ -5,6 +5,8 @@ import style from './Home.module.css';
 const ToggleableBubble = ({ type, children, hiddenContent, isOpen, onToggle, id }) => {
     const [hiddenHeight, setHeight] = useState(0);
     const hiddenRef = useRef(null);
+
+    console.log(isOpen);
   
     useEffect(() => {
       const updateHeight = () => {
@@ -17,8 +19,7 @@ const ToggleableBubble = ({ type, children, hiddenContent, isOpen, onToggle, id 
         updateHeight(); // Trigger height update on screen resize
       };
     
-      // Update height and add the resize event listener only when the bubble is open
-      if (isOpen) {
+      if (isOpen && hiddenContent) {
         updateHeight(); // Initial height update when the bubble opens
     
         window.addEventListener('resize', handleResize); // Add resize listener
@@ -26,13 +27,13 @@ const ToggleableBubble = ({ type, children, hiddenContent, isOpen, onToggle, id 
     
       // Clean up: Remove the event listener when the bubble is closed
       return () => {
-        if (isOpen) {
+        if (isOpen && hiddenContent) {
           window.removeEventListener('resize', handleResize);
         }
       };
-    }, [isOpen]);
+    }, [isOpen, hiddenContent]);
   
-    const outerDivOnClick = type !== 'veranstaltung' || !isOpen ? onToggle : undefined;
+    const outerDivOnClick = hiddenContent ? onToggle : undefined;
   
     return (
       <div
@@ -41,15 +42,17 @@ const ToggleableBubble = ({ type, children, hiddenContent, isOpen, onToggle, id 
       >
         <div className={style.scrollAnchor} id={id}/>
         {children}
-        <div
-          className={`${style.hidden}`}
-          style={{ height: isOpen ? hiddenHeight : 0 }}
-        >
-          <div ref={hiddenRef} className={style.hiddenWrapper}>
-            {hiddenContent}
+        {hiddenContent && (
+          <div
+            className={`${style.hidden}`}
+            style={{ height: isOpen ? hiddenHeight : 0 }}
+          >
+            <div ref={hiddenRef} className={style.hiddenWrapper}>
+              {hiddenContent}
+            </div>
           </div>
-        </div>
-        {type === 'veranstaltung' && (
+        )}
+        {type === 'veranstaltung' && hiddenContent &&(
           <p className={style.indicator}>
             <span
               style={{ display: isOpen ? 'inline-block' : 'none' }}
@@ -59,14 +62,14 @@ const ToggleableBubble = ({ type, children, hiddenContent, isOpen, onToggle, id 
               Weniger
             </span>
             <span 
-            style={{ display: isOpen ? 'none' : 'inline-block' }}
-            className={style.mehr}>
+              style={{ display: isOpen ? 'none' : 'inline-block' }}
+              className={style.mehr}>
               Mehr
             </span>
           </p>
         )}
       </div>
-      )
-  }
+    )
+}
 
-  export default ToggleableBubble
+export default ToggleableBubble;

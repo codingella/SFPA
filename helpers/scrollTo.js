@@ -10,3 +10,14 @@ export const scrollTo = (elementId) => {
     block: 'start', // Aligns the top of the element to the top of the viewport
   })
 }
+
+export const scrollToTop = (elementId) => {
+  console.log('hi')
+  const element = document.getElementById(elementId)
+  if (!element) {
+    console.warn(`Element with ID ${elementId} not found.`)
+    return
+  }
+  // Directly control scroll using scrollTop
+  element.scrollTop = 0
+}
