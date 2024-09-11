@@ -84,7 +84,7 @@ const Podcasts = ({ data }) => {
               {item.text && <p>{item.text}</p>}
               <p>
                 <span>{`Folge ${data.length - i}`}</span>
-                {item.duration && <span>{item.duration}</span>}
+                {item.duration && <span className={style.duration}>{item.duration}</span>}
               </p>
             </div>
           </ToggleableBubble>

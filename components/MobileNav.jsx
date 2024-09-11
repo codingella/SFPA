@@ -21,7 +21,7 @@ const MobileNav = ({nav, open, setOpen, intro}) => {
   return (
     <>
       <div className={`${style.mobileNav} ${open ? style.active : ''}`} style={{opacity: intro ? 1 : 0}}>
-      
+      <div onClick={() => setOpen(false)}className={style.overlayTop}/>
           {nav.slice().reverse().map((item, i) => (
             <div
               key={i}
@@ -38,9 +38,6 @@ const MobileNav = ({nav, open, setOpen, intro}) => {
               </p>
             </div>
         ))}
-
-        
-      <div onClick={() => setOpen(false)}className={style.overlayTop}/>
       </div>
 
       <div className={style.overlayBottom}/>

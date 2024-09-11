@@ -164,6 +164,10 @@
     margin-bottom: 0;
 }
 
+.duration {
+    margin-left: 20px;
+}
+
 
 .bubble {
     width: 100%;
@@ -310,6 +314,14 @@
         display: block;
     }
 
+    .overlayTop {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 103;
+        top: 0;
+    }
+
     .overlayBottom {
         position: fixed;
         width: 100%;
@@ -329,7 +341,7 @@
         background-color: var(--grey);
         padding: 30px 20px;
         border-radius: var(--radius);
-        z-index: 102;
+        z-index: 110;
         cursor:pointer;
     }
 
@@ -361,7 +373,7 @@
         padding: 0 20px;
         margin: -1px 0;
         border-radius: var(--radius);
-        z-index: 101;
+        z-index: 105;
         will-change: transform;
         flex-grow: 0; 
         flex-shrink: 1;  
@@ -383,13 +395,6 @@
         text-align: center;
     }
 
-    .overlayTop {
-        position: absolute;
-        top:-20px;
-        left:0;
-        height:calc(70px + 1em * var(--lh) *2);
-        width: 100%;
-    }
 
     .veranstaltungen, .leftColumn {
         overflow: unset;
@@ -458,16 +463,12 @@
 @media (hover: none) {
 
     .bubble:hover {
-        background-color: unset !important;
+        background-color: var(--lilac) !important;
     }
     
 
 }
 
-
-@media (max-width: 1100px), (orientation: portrait) {
-   
-}
 
 
 
