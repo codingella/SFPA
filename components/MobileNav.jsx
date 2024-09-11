@@ -28,7 +28,7 @@ const MobileNav = ({nav, open, setOpen, intro}) => {
               onClick={() => handleNavClick(item)}
               className={style.navItem}
               style={{
-                transition: open ? `transform 0.30s ease-out ${(i+1)*0.01}s, color 0.2s ease 0.1s` : `transform 0.30s ease-out ${(nav.length-i)*0.01}s, color 0.2s ease`,
+                transition: open ? `transform 0.20s ease-out ${(i+1)*0.01}s, color 0.1s ease 0.1s` : `transform 0.20s ease-out ${(nav.length-i)*0.01}s, color 0.1s ease`,
                 transform: open ? `translateY(0)` : `translateY(${(i+1)*100}%)`,
                 color: open ? `black` : `#E8E7E7`,
               }} 
