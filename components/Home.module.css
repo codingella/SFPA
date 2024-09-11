@@ -28,7 +28,7 @@
 }
 
 .logo {
-    top: calc(var(--padding) + 2px);
+    top: calc(var(--padding) + 4px);
     height: calc(1em * var(--lh) * 4);
     max-width: 60vw;
     cursor: pointer;
@@ -55,10 +55,6 @@
     display: contents;
 }
 
-.leftColumn {
-    grid-column: 9 / 12;
-}
-
 .abschnitt {
     position: relative;
 }
@@ -74,6 +70,11 @@
     scrollbar-width: none; /* Hides scrollbar for Firefox */
     -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer and Edge */
     position: absolute;
+}
+
+.leftColumn {
+    grid-column: 9 / 12;
+    padding: 0 0 80vh 0;
 }
 
 .veranstaltungen::-webkit-scrollbar, .leftColumn::-webkit-scrollbar, .paginationScroll::-webkit-scrollbar, .Home::-webkit-scrollbar {
@@ -93,7 +94,6 @@
 
 .abschnitt .sectionHeader{
     padding-bottom: 20px;
-    margin-top: 30px;
 }
 
 .sectionHeader:first-child {margin-top: 0;}
@@ -230,13 +230,10 @@
     position: absolute;
     top: calc((1em * var(--lh) + var(--padding) + 20px) * (-1));
     left: 0;
+    width:100%;
 }
 
-.abschnitt .scrollAnchor  {
-    top: -10px;
-}
-
-.scrollAnchor#Veranstaltungen, .scrollAnchor#Podcasts {
+.scrollAnchor#Veranstaltungen, .scrollAnchor#Podcasts, .abschnitt .scrollAnchor  {
     top: 0px;
 }
 
@@ -283,10 +280,23 @@
 @media all and (max-width: 1000px){
     .Home {
         display: block;
-        padding: 0 10px 50vh 10px;
-        position: absolute;
-        height: auto;
+        padding: 0 10px calc(100px + var(--lh) * 1em) 10px;
+        position: relative; /* Keeping it relative */  
     }
+
+    .logo {
+        position: relative;
+        height: calc(1em * var(--lh) * 4 + 120px);
+        left: var(--bubble-padding-h);
+    }
+
+    .logo img {
+        position: sticky;
+        height: calc(1em * var(--lh) * 4);
+        display: block;
+        top: calc(var(--padding) + 4px);
+    }
+
 
     .desktopNav {
         display: none;
@@ -325,28 +335,20 @@
 
     .mobileNav {
         position: fixed;
-        padding: calc(70px + 1em * var(--lh) *2) 10px calc(59px + 1em * var(--lh)) 10px;
+        padding: 0 10px calc(59px + 1em * var(--lh)) 10px;
         bottom: 20px;
         left: 0;
         flex-direction: column-reverse;
         width: 100vw;
-        max-width:100%;
         z-index: 100;
-        max-height: 100%;
-        overflow:scroll;
+        max-height: calc(100% - 20px);
         display: flex;
         visibility: hidden;
         transition: visibility 0s linear 0.5s;
-        cursor:pointer;
-        scrollbar-width: none; /* Hides scrollbar for Firefox */
-        -ms-overflow-style: none; 
+        cursor: pointer;
+        column-gap: 0;
+        line-height: 0;
     }
-
-    .mobileNav::-webkit-scrollbar {
-        width: 0px; /* Set scrollbar width to 0 */
-        background: transparent; /* Optional: Make the scrollbar background transparent */
-    }
-    
 
     .mobileNav.active {
         visibility: visible;
@@ -356,11 +358,18 @@
     .mobileNav .navItem {
         width: 100%;
         background-color: var(--grey);
-        padding: 30px 20px;
+        padding: 0 20px;
+        margin: -1px 0;
         border-radius: var(--radius);
         z-index: 101;
-        border: 2px solid var(--grey);
         will-change: transform;
+        flex-grow: 0; 
+        flex-shrink: 1;  
+        flex-basis: calc(60px + 1em *var(--lh));       
+        overflow: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;         
     }
 
     .mobileNav.active .navItem {
@@ -380,17 +389,6 @@
         left:0;
         height:calc(70px + 1em * var(--lh) *2);
         width: 100%;
-    }
-
-    .logo {
-        position: relative;
-        margin-bottom: 100px;
-        left: var(--bubble-padding-h);
-        top: calc(var(--padding) + 5px)
-    }
-
-    .logo img {
- 
     }
 
     .veranstaltungen, .leftColumn {
@@ -415,6 +413,10 @@
     .pagination span {
         margin-right: calc(1.2em);
         white-space: nowrap;
+    }
+
+    .abschnitt .sectionHeader {
+        margin-top: 30px;
     }
 
     .sectionHeader, .abschnitt.first{

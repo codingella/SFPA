@@ -18,7 +18,6 @@ const Home = ({ content }) => {
 
   const { settings, veranstaltungen, podcasts, podcastIntro, abschnitte } = content;
 
-  console.log(abschnitte);
 
   useEffect(() => {
     setTimeout(()=> {
@@ -27,21 +26,19 @@ const Home = ({ content }) => {
   }, []);
 
   const resetPage = () => {
-    scrollTo('Veranstaltungen');
-    setTimeout(() => {
-      scrollTo('Podcasts');
-    }, 800)
+    if(window.innerWidth > 1000){
+      scrollTo('Veranstaltungen');
+      setTimeout(() => {
+        scrollTo('Podcasts');
+      }, 800)
+    }
   }
-
-  console.log(podcastIntro.description)
 
   return (
     <>
     <div className={style.Home} style={{opacity: intro ? 1 : 0, transition: 'opacity 0.5s ease'}}>
       <div className={style.logo} onClick={resetPage}>
-       
         <img src={'/logo.svg'} alt={'Logo'}/>
-       
       </div>
 
       {/*<div className={style.logo}>
