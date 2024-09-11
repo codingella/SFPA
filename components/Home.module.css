@@ -1,10 +1,11 @@
 .Home {
-    position: relative;
-    height: 100vh;
+    position: absolute;
+    height: 100%;
     width: 100%;
     display: grid;
     align-items: start;
     grid-template-columns: var(--grid-template-columns);
+    grid-template-rows: 1fr;
     grid-gap: var(--grid-gap);
     padding: 0 var(--padding);
 }
@@ -66,7 +67,7 @@
     padding: 0 0 70vh 0;
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
