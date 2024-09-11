@@ -403,6 +403,10 @@
         position: relative;
     }
 
+    .veranstaltungen .sectionHeader{
+        margin-top: 120px;
+    }
+
     .pagination {
         width: 100vw;
         position: relative;
